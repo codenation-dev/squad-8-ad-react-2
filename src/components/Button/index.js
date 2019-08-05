@@ -5,8 +5,10 @@ const Button = styled.button`
   border-radius: 3px;
   border: 2px solid #085191;
   color: #085191;
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
+  margin: 2px 2px;
+  padding: 1px 1px;
+  width: 160px;
+  height: 30px;
 `;
 
 export default Button;
