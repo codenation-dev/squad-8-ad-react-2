@@ -24,7 +24,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "daviwesley"
+      user: ""
     };
   }
   render() {
@@ -40,14 +40,7 @@ class App extends Component {
         <Query query={query} variables={{ user: this.state.user }}>
           {({ data, loading, error }) => {
             if (loading) return <p>loading...</p>;
-            if (error) {
-              if (
-                (error.message =
-                  "GraphQL error: Could not resolve to a User with the login of ''")
-              ) {
-                return <p>Informe um usuário</p>;
-              } else return <p>error.message</p>;
-            }
+            if (error) return <p>{error.message}</p>;
             return (
               <div>
                 <ul>
