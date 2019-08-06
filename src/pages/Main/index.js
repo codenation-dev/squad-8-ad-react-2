@@ -11,10 +11,14 @@ import { repoRequest } from "../../store/modules/repo/actions";
 
 import format from "date-fns/format";
 import br from "date-fns/locale/pt";
+import isSameYear from "date-fns/is_same_year";
 const DATE_FORMAT = "D/M/YYYY";
 
 function Main({ repoRequest, repo }) {
   const [login, setlogin] = useState("");
+  const contributionsFromYear = repo.data.filter(data =>
+    isSameYear(data.created_at, new Date())
+  );
   return (
     <Container>
       <Header>
@@ -30,7 +34,7 @@ function Main({ repoRequest, repo }) {
 
       <Content>
         {repo.loading && <p>Carregando...</p>}
-        {repo.data.map(repo => {
+        {contributionsFromYear.map(repo => {
           return (
             <Card
               key={repo.full_name}
@@ -39,6 +43,7 @@ function Main({ repoRequest, repo }) {
               description={
                 repo.description ? repo.description : "Sem descrição"
               }
+              language={repo.language}
             />
           );
         })}

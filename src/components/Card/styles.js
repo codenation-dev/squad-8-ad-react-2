@@ -24,10 +24,17 @@ export const CardDescription = styled.p`
   color: #999;
 `;
 
-export const CardDate = styled.p`
+export const Details = styled.p`
   padding: 10px;
   margin-top: 10px;
   font-size: 14px;
   color: #999;
   font-style: italic;
+`;
+
+export const DetailsContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
 `;
