@@ -6,7 +6,7 @@ const Input = styled.input.attrs({ type: "text" })`
   padding: 10px 15px;
   border-radius: 4px;
   font-size: 16px;
-
+  margin: 4px;
   &:hover {
     border-color: ${darken(0.1, "#eee")};
   }

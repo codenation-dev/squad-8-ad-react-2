@@ -10,7 +10,7 @@ export const CardBox = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-  padding: 5px 10px
+  padding: 5px 10px;
   margin-bottom: 5px;
   border-bottom: 1px solid #eee;
   font-size: 18px;
@@ -20,6 +20,6 @@ export const CardTitle = styled.h3`
 export const CardDescription = styled.p`
   padding: 10px;
   margin-top: 10px;
-  font-size 14px;
+  font-size: 14px;
   color: #999;
 `;
