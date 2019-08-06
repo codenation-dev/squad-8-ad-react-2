@@ -9,6 +9,8 @@ const Button = styled.button`
   padding: 1px 1px;
   width: 160px;
   height: 30px;
+  font-family: "Roboto";
+  font-size: 14px;
 `;
 
 export default Button;
