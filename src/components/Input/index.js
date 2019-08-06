@@ -1,12 +1,20 @@
 import styled from "styled-components";
-
+import { darken } from "polished";
 const Input = styled.input.attrs({ type: "text" })`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid #085191;
-  color: #085191;
-  width: 300px;
-  height: 20px;
+  flex: 1;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+
+  &:hover {
+    border-color: ${darken(0.1, "#eee")};
+  }
+
+  ::placeholder {
+    color: #999;
+    font-size: 14px;
+  }
 `;
 
 export default Input;

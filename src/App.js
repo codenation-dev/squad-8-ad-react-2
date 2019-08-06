@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
+import GlobalStyle from "./styles/global";
 
-import "react-toastify/dist/ReactToastify.css";
+import Main from "./pages/Main";
 
 function App() {
   return (
     <Fragment>
       <ToastContainer autoClose={3000} />
+      <GlobalStyle />
       {/* Colocar conteúdo daqui pra baixo */}
-      <h1>Squad 8</h1>
+      <Main />
     </Fragment>
   );
 }

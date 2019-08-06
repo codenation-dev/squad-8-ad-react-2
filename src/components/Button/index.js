@@ -1,16 +1,36 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid #085191;
-  color: #085191;
-  margin: 2px 2px;
-  padding: 1px 1px;
-  width: 160px;
-  height: 30px;
-  font-family: "Roboto";
-  font-size: 14px;
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Button = styled.button.attrs(props => ({
+  type: "button",
+  disabled: props.loading
+}))`
+  border: 0;
+  padding: 0 15px;
+  margin-left: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  ${props =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
 `;
 
 export default Button;
