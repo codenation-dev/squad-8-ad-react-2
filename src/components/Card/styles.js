@@ -23,3 +23,11 @@ export const CardDescription = styled.p`
   font-size: 14px;
   color: #999;
 `;
+
+export const CardDate = styled.p`
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #999;
+  font-style: italic;
+`;
