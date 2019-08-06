@@ -1,13 +1,22 @@
 import React from "react";
 
-import { CardBox, CardTitle, CardDescription, CardDate } from "./styles";
+import {
+  CardBox,
+  CardTitle,
+  CardDescription,
+  Details,
+  DetailsContainer
+} from "./styles";
 
-const Card = ({ title, description, date }) => {
+const Card = ({ title, description, date, language }) => {
   return (
     <CardBox>
       <CardTitle>{title}</CardTitle>
       <CardDescription>{description}</CardDescription>
-      <CardDate>{`Criado em: ${date}`}</CardDate>
+      <DetailsContainer>
+        <Details>{`Criado em: ${date}`}</Details>
+        <Details>{`Linguaguem: ${language}`}</Details>
+      </DetailsContainer>
     </CardBox>
   );
 };
