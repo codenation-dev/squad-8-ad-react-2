@@ -9,8 +9,11 @@ import { Container, Header, Content } from "./styles";
 import Card from "../../components/Card";
 import { repoRequest } from "../../store/modules/repo/actions";
 
-function Main(props) {
-  console.log(props);
+import format from "date-fns/format";
+import br from "date-fns/locale/pt";
+const DATE_FORMAT = "D/M/YYYY";
+
+function Main({ repoRequest, repo }) {
   const [login, setlogin] = useState("");
   return (
     <Container>
@@ -20,18 +23,25 @@ function Main(props) {
           value={login}
           onChange={e => setlogin(e.target.value)}
         />
-        <Button type="button" onClick={() => props.repoRequest(login)}>
+        <Button type="button" onClick={() => repoRequest(login)}>
           <MdSearch size={18} color="rgba(8, 81, 145, 0.7)" />
         </Button>
       </Header>
 
       <Content>
-        {props.repo.data.map(repo => (
-          <Card
-            title={repo.full_name}
-            description={repo.description ? repo.description : "Sem descrição"}
-          />
-        ))}
+        {repo.loading && <p>Carregando...</p>}
+        {repo.data.map(repo => {
+          return (
+            <Card
+              key={repo.full_name}
+              title={repo.full_name}
+              date={format(repo.created_at, DATE_FORMAT, { locale: br })}
+              description={
+                repo.description ? repo.description : "Sem descrição"
+              }
+            />
+          );
+        })}
       </Content>
     </Container>
   );
