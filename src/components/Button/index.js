@@ -15,6 +15,7 @@ const Button = styled.button.attrs(props => ({
 }))`
   border: 0;
   padding: 0 15px;
+  margin: 4px;
   margin-left: 10px;
   border-radius: 4px;
   display: flex;
