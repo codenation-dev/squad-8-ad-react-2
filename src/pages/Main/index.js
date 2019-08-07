@@ -46,7 +46,7 @@ function Main() {
           onChange={e => setlogin(e.target.value)}
         />
         <Button
-          loading={loading}
+          loading={loading ? 1 : 0}
           type="button"
           onClick={() => dispatch(repoRequest(login))}
         />
