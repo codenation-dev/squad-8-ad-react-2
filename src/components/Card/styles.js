@@ -45,7 +45,7 @@ export const CardTitle = styled.div`
         white-space: nowrap;
         text-overflow: ellipsis;
         display: block;
-        overflow: hidden
+        overflow: hidden;
 
         font-weight: 400;
         color: rgba(0, 0, 0, 0.87);
