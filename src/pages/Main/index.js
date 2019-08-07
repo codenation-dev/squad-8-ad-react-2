@@ -1,23 +1,42 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-
 
 import { Container, Header, Content } from "./styles";
 import Card from "../../components/Card";
 import { repoRequest } from "../../store/modules/repo/actions";
 
-import format from "date-fns/format";
-import br from "date-fns/locale/pt";
-import isSameYear from "date-fns/is_same_year";
-const DATE_FORMAT = "D/M/YYYY";
+import { format, parseISO, isSameYear, compareDesc } from "date-fns";
+import pt from "date-fns/locale/pt";
 
-function Main({ repoRequest, repo }) {
+function contributionsFromYear(data) {
+  return data
+    .filter(dt => isSameYear(parseISO(dt.created_at), new Date()))
+    .map(filteredData => ({
+      ...filteredData,
+      parsed_date: format(
+        parseISO(filteredData.created_at),
+        "d 'de' MMMM 'de' yyyy",
+        {
+          locale: pt
+        }
+      )
+    }))
+    .sort((a, b) =>
+      compareDesc(parseISO(a.created_at), parseISO(b.created_at))
+    );
+}
+
+function Main() {
   const [login, setlogin] = useState("");
-  const contributionsFromYear = repo.data.filter(data =>
-    isSameYear(data.created_at, new Date())
-  );
+  const dispatch = useDispatch();
+
+  const { loading, data } = useSelector(state => state.repo);
+
+  const repo = contributionsFromYear(data);
+
   return (
     <Container>
       <Header>
@@ -26,16 +45,20 @@ function Main({ repoRequest, repo }) {
           value={login}
           onChange={e => setlogin(e.target.value)}
         />
-        <Button loading={repo.loading} type="button" onClick={() => repoRequest(login)}/>
+        <Button
+          loading={loading}
+          type="button"
+          onClick={() => dispatch(repoRequest(login))}
+        />
       </Header>
 
       <Content>
-        {contributionsFromYear.map(repo => {
+        {repo.map(repo => {
           return (
             <Card
               key={repo.full_name}
-              title={repo.full_name}
-              date={format(repo.created_at, DATE_FORMAT, { locale: br })}
+              title={repo.name}
+              date={repo.parsed_date}
               description={
                 repo.description ? repo.description : "Sem descrição"
               }
@@ -48,15 +71,4 @@ function Main({ repoRequest, repo }) {
   );
 }
 
-const mapStatetoProps = state => ({
-  repo: state.repo
-});
-
-const mapDispatchtoProps = {
-  repoRequest
-};
-
-export default connect(
-  mapStatetoProps,
-  mapDispatchtoProps
-)(Main);
+export default Main;

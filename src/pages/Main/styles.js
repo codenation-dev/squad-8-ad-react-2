@@ -13,12 +13,19 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  position: absolute;
+  top: 10px;
   display: flex;
   flex-direction: row;
   width: 350px;
 `;
 
 export const Content = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  margin-top: 80px;
+
   ${CardBox} {
     margin: 10px 0;
   }

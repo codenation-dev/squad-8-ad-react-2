@@ -11,10 +11,17 @@ import {
 const Card = ({ title, description, date, language }) => {
   return (
     <CardBox>
-      <CardTitle>{title}</CardTitle>
+      <CardTitle>
+        <div>
+          <span>{title.slice(0, 1)}</span>
+          <div>
+            <h3>{title}</h3>
+            <strong>{date}</strong>
+          </div>
+        </div>
+      </CardTitle>
       <CardDescription>{description}</CardDescription>
       <DetailsContainer>
-        <Details>{`Criado em: ${date}`}</Details>
         <Details>{`Linguaguem: ${language}`}</Details>
       </DetailsContainer>
     </CardBox>
