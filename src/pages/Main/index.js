@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
-import { MdSearch } from "react-icons/md";
 
 import { Container, Header, Content } from "./styles";
 import Card from "../../components/Card";
@@ -27,13 +26,10 @@ function Main({ repoRequest, repo }) {
           value={login}
           onChange={e => setlogin(e.target.value)}
         />
-        <Button type="button" onClick={() => repoRequest(login)}>
-          <MdSearch size={18} color="rgba(8, 81, 145, 0.7)" />
-        </Button>
+        <Button loading={repo.loading} type="button" onClick={() => repoRequest(login)}/>
       </Header>
 
       <Content>
-        {repo.loading && <p>Carregando...</p>}
         {contributionsFromYear.map(repo => {
           return (
             <Card

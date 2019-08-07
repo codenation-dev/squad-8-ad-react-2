@@ -1,37 +1,11 @@
-import styled, { css, keyframes } from "styled-components";
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Button = styled.button.attrs(props => ({
-  type: "button",
-  disabled: props.loading
-}))`
-  border: 0;
-  padding: 0 15px;
-  margin: 4px;
-  margin-left: 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-  ${props =>
-    props.loading &&
-    css`
-      svg {
-        animation: ${rotate} 2s linear infinite;
-      }
-    `}
-`;
-
-export default Button;
+import React from "react";
+import { Button } from "./styles"
+import { MdSearch, MdLoop } from "react-icons/md";
+import { FaSpinner } from 'react-icons/fa';
+export default (props) => {
+    return(
+        <Button {...props}>
+        {props.loading? <FaSpinner>oi</FaSpinner>:<MdSearch size={18} color="rgba(8, 81, 145, 0.7)" />}
+        </Button>
+    )
+}
