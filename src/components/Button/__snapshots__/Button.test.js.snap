@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+.c0 {
+  border: 0;
+  padding: 0 15px;
+  margin: 4px;
+  margin-left: 10px;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+<button
+  className="c0"
+  type="button"
+>
+  <svg
+    color="rgba(8, 81, 145, 0.7)"
+    fill="currentColor"
+    height={18}
+    size={18}
+    stroke="currentColor"
+    strokeWidth="0"
+    style={
+      Object {
+        "color": "rgba(8, 81, 145, 0.7)",
+      }
+    }
+    viewBox="0 0 24 24"
+    width={18}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+    />
+  </svg>
+</button>
+`;
