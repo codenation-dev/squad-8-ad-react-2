@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { darken } from "polished";
 const Input = styled.input.attrs({ type: "text" })`
-  flex: 1;
   border: 1px solid #eee;
   padding: 10px 15px;
   border-radius: 4px;
