@@ -30,3 +30,24 @@ export const Content = styled.div`
     margin: 10px 0;
   }
 `;
+
+export const Selector = styled.div`
+  position: absolute;
+  top: 60px;
+  display: flex;
+  flex-direction: row;
+  width: 350px;
+`;
+
+export const Span = styled.span`
+  display: inline-block;
+  background-color: #eee;
+  font-size: 16px;
+  width: 50px;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
+`;
