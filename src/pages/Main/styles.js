@@ -8,35 +8,33 @@ export const Container = styled.div`
   height: 100%;
   min-height: 100vh;
 
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
 `;
 
 export const Header = styled.div`
-  position: absolute;
-  top: 10px;
   display: flex;
+  align-items: stretch;
   flex-direction: row;
-  width: 350px;
+  align-content: center;
+  justify-content: center;
+  top: 10px;
 `;
 
 export const Content = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 15px;
-  margin-top: 80px;
-
-  ${CardBox} {
-    margin: 10px 0;
-  }
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 `;
 
 export const Selector = styled.div`
-  position: absolute;
-  top: 60px;
   display: flex;
-  flex-direction: row;
-  width: 350px;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Span = styled.span`

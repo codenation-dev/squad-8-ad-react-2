@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
-import FilterLanguage from "../../components/FilterLanguage"
-import FilterYear from "../../components/FilterYear"
+import FilterLanguage from "../../components/FilterLanguage";
+import FilterYear from "../../components/FilterYear";
 
 import { Container, Header, Content, Selector, Span } from "./styles";
 import Card from "../../components/Card";
@@ -33,11 +33,15 @@ function contributionsFromYear(data) {
 }
 
 function contributionsFilters(data, searchLang, searchYear) {
-
   return searchLang && searchYear
-    ? data.filter(ret => ret.language === searchLang).filter(year => year.created_at.slice(0,4) === searchYear) 
-      : searchLang ? data.filter(ret => ret.language === searchLang)
-        : searchYear ? data.filter(year => year.created_at.slice(0,4) === searchYear) : ''
+    ? data
+        .filter(ret => ret.language === searchLang)
+        .filter(year => year.created_at.slice(0, 4) === searchYear)
+    : searchLang
+    ? data.filter(ret => ret.language === searchLang)
+    : searchYear
+    ? data.filter(year => year.created_at.slice(0, 4) === searchYear)
+    : "";
 }
 
 function Main() {
@@ -50,8 +54,8 @@ function Main() {
 
   const repo = contributionsFromYear(data);
 
-  const filterAll = contributionsFilters(data, searchLang, searchYear)
-  const filterRepo = searchLang || searchYear ? true : false
+  const filterAll = contributionsFilters(data, searchLang, searchYear);
+  const filterRepo = searchLang || searchYear ? true : false;
 
   return (
     <Container>
@@ -66,13 +70,19 @@ function Main() {
           type="button"
           onClick={() => dispatch(repoRequest(login))}
         />
+        <FilterLanguage
+          data={data}
+          onChange={e => setSearchLang(e.target.value)}
+          searchLang={searchLang}
+        />
+        <FilterYear
+          data={data}
+          onChange={e => setSearchYear(e.target.value)}
+          searchYear={searchYear}
+        />
       </Header>
 
-      <Selector>
-        <Span>Filtro</Span>
-        <FilterLanguage data={data} onChange={(e) => setSearchLang(e.target.value)} searchLang={searchLang}/>
-        <FilterYear data={data} onChange={(e) => setSearchYear(e.target.value)} searchYear={searchYear}/>
-      </Selector>
+      <Selector />
 
       <Content>
         {filterRepo
@@ -83,25 +93,27 @@ function Main() {
                   title={filtered.name}
                   date={filtered.parsed_date}
                   description={
-                    filtered.description ? filtered.description : "Sem descrição"
+                    filtered.description
+                      ? filtered.description
+                      : "Sem descrição"
                   }
                   language={filtered.language}
                 />
               );
             })
-            : repo.map(repo => {
-                return (
-                  <Card
-                    key={repo.full_name}
-                    title={repo.name}
-                    date={repo.parsed_date}
-                    description={
-                      repo.description ? repo.description : "Sem descrição"
-                    }
-                    language={repo.language}
-                  />
-                );
-              })}
+          : repo.map(repo => {
+              return (
+                <Card
+                  key={repo.full_name}
+                  title={repo.name}
+                  date={repo.parsed_date}
+                  description={
+                    repo.description ? repo.description : "Sem descrição"
+                  }
+                  language={repo.language}
+                />
+              );
+            })}
       </Content>
     </Container>
   );
