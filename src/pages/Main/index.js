@@ -7,16 +7,15 @@ import Input from "../../components/Input";
 import FilterLanguage from "../../components/FilterLanguage";
 import FilterYear from "../../components/FilterYear";
 
-import { Container, Header, Content, Selector, Span } from "./styles";
+import { Container, Header, Content, Selector } from "./styles";
 import Card from "../../components/Card";
 import { repoRequest } from "../../store/modules/repo/actions";
 
 import { format, parseISO, isSameYear, compareDesc } from "date-fns";
 import pt from "date-fns/locale/pt";
 
-function contributionsFromYear(data) {
+function parsedDate(data) {
   return data
-    .filter(dt => isSameYear(parseISO(dt.created_at), new Date()))
     .map(filteredData => ({
       ...filteredData,
       parsed_date: format(
@@ -33,15 +32,23 @@ function contributionsFromYear(data) {
 }
 
 function contributionsFilters(data, searchLang, searchYear) {
-  return searchLang && searchYear
-    ? data
-        .filter(ret => ret.language === searchLang)
-        .filter(year => year.created_at.slice(0, 4) === searchYear)
-    : searchLang
-    ? data.filter(ret => ret.language === searchLang)
-    : searchYear
-    ? data.filter(year => year.created_at.slice(0, 4) === searchYear)
-    : "";
+  if (searchLang && searchYear) {
+    return data
+      .filter(ret => ret.language === searchLang)
+      .filter(year =>
+        isSameYear(
+          parseISO(year.created_at),
+          new Date(Number(searchYear), 1, 1)
+        )
+      );
+  } else if (searchLang && !searchYear) {
+    return data.filter(ret => ret.language === searchLang);
+  } else if (!searchLang && searchYear) {
+    return data.filter(year =>
+      isSameYear(parseISO(year.created_at), new Date(Number(searchYear), 1, 1))
+    );
+  }
+  return data;
 }
 
 function Main() {
@@ -52,10 +59,7 @@ function Main() {
 
   const { loading, data } = useSelector(state => state.repo);
 
-  const repo = contributionsFromYear(data);
-
-  const filterAll = contributionsFilters(data, searchLang, searchYear);
-  const filterRepo = searchLang || searchYear ? true : false;
+  const repo = contributionsFilters(parsedDate(data), searchLang, searchYear);
 
   return (
     <Container>
@@ -85,35 +89,19 @@ function Main() {
       <Selector />
 
       <Content>
-        {filterRepo
-          ? filterAll.map(filtered => {
-              return (
-                <Card
-                  key={filtered.full_name}
-                  title={filtered.name}
-                  date={filtered.parsed_date}
-                  description={
-                    filtered.description
-                      ? filtered.description
-                      : "Sem descrição"
-                  }
-                  language={filtered.language}
-                />
-              );
-            })
-          : repo.map(repo => {
-              return (
-                <Card
-                  key={repo.full_name}
-                  title={repo.name}
-                  date={repo.parsed_date}
-                  description={
-                    repo.description ? repo.description : "Sem descrição"
-                  }
-                  language={repo.language}
-                />
-              );
-            })}
+        {repo.map(repo => {
+          return (
+            <Card
+              key={repo.full_name}
+              title={repo.name}
+              date={repo.parsed_date}
+              description={
+                repo.description ? repo.description : "Sem descrição"
+              }
+              language={repo.language}
+            />
+          );
+        })}
       </Content>
     </Container>
   );

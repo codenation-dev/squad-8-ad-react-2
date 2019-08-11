@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { CardBox } from "../../components/Card/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -7,9 +6,6 @@ export const Container = styled.div`
 
   height: 100%;
   min-height: 100vh;
-
-  /* align-items: center;
-  justify-content: center; */
 `;
 
 export const Header = styled.div`
@@ -35,17 +31,4 @@ export const Selector = styled.div`
 
   align-items: center;
   justify-content: center;
-`;
-
-export const Span = styled.span`
-  display: inline-block;
-  background-color: #eee;
-  font-size: 16px;
-  width: 50px;
-  border: 1px solid #eee;
-  padding: 10px 15px;
-  border-radius: 4px;
-  align-items: center;
-  justify-content: center;
-  margin: 4px;
 `;
