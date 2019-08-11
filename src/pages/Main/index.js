@@ -7,7 +7,7 @@ import Input from "../../components/Input";
 import FilterLanguage from "../../components/FilterLanguage";
 import FilterYear from "../../components/FilterYear";
 
-import { Container, Header, Content, Selector } from "./styles";
+import { Container, Header, Content } from "./styles";
 import Card from "../../components/Card";
 import { repoRequest } from "../../store/modules/repo/actions";
 
