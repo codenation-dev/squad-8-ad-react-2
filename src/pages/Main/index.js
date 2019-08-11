@@ -86,8 +86,6 @@ function Main() {
         />
       </Header>
 
-      <Selector />
-
       <Content>
         {repo.map(repo => {
           return (

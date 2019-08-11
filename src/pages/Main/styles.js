@@ -24,11 +24,3 @@ export const Content = styled.div`
   justify-content: center;
   align-content: center;
 `;
-
-export const Selector = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-`;
