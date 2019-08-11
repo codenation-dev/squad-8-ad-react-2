@@ -64,16 +64,18 @@ function Main() {
   return (
     <Container>
       <Header>
-        <Input
-          placeholder="Digite o nome do usuário."
-          value={login}
-          onChange={e => setlogin(e.target.value)}
-        />
-        <Button
-          loading={loading ? 1 : 0}
-          type="button"
-          onClick={() => dispatch(repoRequest(login))}
-        />
+        <div>
+          <Input
+            placeholder="Digite o nome do usuário."
+            value={login}
+            onChange={e => setlogin(e.target.value)}
+          />
+          <Button
+            loading={loading ? 1 : 0}
+            type="button"
+            onClick={() => dispatch(repoRequest(login))}
+          />
+        </div>
         <FilterLanguage
           data={data}
           onChange={e => setSearchLang(e.target.value)}

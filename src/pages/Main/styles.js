@@ -11,10 +11,22 @@ export const Container = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: stretch;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-content: center;
   justify-content: center;
   top: 10px;
+
+  div {
+    display: flex;
+  }
+
+  @media screen and (max-width: 570px) {
+    div {
+      min-width: 570px;
+      align-content: center;
+      justify-content: center;
+    }
+  }
 `;
 
 export const Content = styled.div`
